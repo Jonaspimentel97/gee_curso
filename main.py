@@ -6,7 +6,7 @@ from google.auth.transport.requests import Request
 import os
 
 
-# Inicialize a biblioteca Earth Engine
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "gee1-444402-108079866ffc.json"
 ee.Initialize()
 
 # Configuração do Streamlit
