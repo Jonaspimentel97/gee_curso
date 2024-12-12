@@ -8,6 +8,7 @@ import os
 from google.oauth2 import service_account
 from ee import oauth
 
+# Função para autenticar no Google Earth Engine usando as credenciais do Streamlit
 def get_auth():
     # Acessa as credenciais a partir dos segredos configurados no Streamlit
     service_account_keys = st.secrets["service_account_json"]  # Substitua com o nome que você configurou no painel de segredos
@@ -31,12 +32,12 @@ def mask_l8(image):
     return image.updateMask(mask)
 
 # Definir a área de interesse
-area = ee.Geometry.Polygon([
-    [[-43.003569900550836, -22.631163343162356],
-     [-43.003569900550836, -22.71289591702512],
-     [-42.814055740394586, -22.71289591702512],
-     [-42.814055740394586, -22.631163343162356]]
-])
+area = ee.Geometry.Polygon([[
+    [-43.003569900550836, -22.631163343162356],
+    [-43.003569900550836, -22.71289591702512],
+    [-42.814055740394586, -22.71289591702512],
+    [-42.814055740394586, -22.631163343162356]
+]])
 
 # Inputs do usuário
 start_date = st.sidebar.text_input('Data inicial (YYYY-MM-DD):', '2023-01-01')
@@ -104,4 +105,7 @@ Map = geemap.Map(center=[-22.67, -42.91], zoom=10)
 Map.addLayer(classificacao, {'min': 0, 'max': 3, 'palette': ['red', 'green', 'blue', 'yellow']}, "Classificação")
 Map.addLayer(area, {}, "Área de Interesse")
 Map.to_streamlit(height=600)
+
+# Chama a autenticação para inicializar o Google Earth Engine
+get_auth()
 
