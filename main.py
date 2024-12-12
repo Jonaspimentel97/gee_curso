@@ -17,8 +17,6 @@ def get_auth():
         # Retorna sucesso após autenticação
         return 'GEE initialized successfully'
     except Exception as e:
-        # Caso haja erro na autenticação, exibe a mensagem de erro
-        return f"Error initializing GEE: {e}"
 
 # Inicialize o GEE antes de qualquer outra operação
 auth_status = get_auth()
