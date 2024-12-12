@@ -5,9 +5,19 @@ from google.auth import credentials
 from google.auth.transport.requests import Request
 import os
 
+from google.oauth2 import service_account
+from ee import oauth
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "D:\Download\gee1-444402-108079866ffc.json"
-ee.Initialize()
+def get_auth():
+    # Acessa as credenciais a partir dos segredos configurados no Streamlit
+    service_account_keys = st.secrets["service_account_json"]  # Substitua com o nome que você configurou no painel de segredos
+    credentials = service_account.Credentials.from_service_account_info(service_account_keys, scopes=oauth.SCOPES)
+    
+    # Inicializa o Google Earth Engine com as credenciais
+    ee.Initialize(credentials)
+    
+    # Retorna sucesso após autenticação
+    return 'successfully sync to GEE'
 
 # Configuração do Streamlit
 st.title('Classificação de Uso e Cobertura do Solo com Landsat 8')
