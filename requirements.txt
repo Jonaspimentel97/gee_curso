@@ -2,3 +2,5 @@ streamlit
 earthengine-api
 geemap
 pkg_resources
+setuptools
+geemap --upgrade
