@@ -1,3 +1,4 @@
 streamlit
 earthengine-api
-geemap.foliumap
+geemap
+setuptools
