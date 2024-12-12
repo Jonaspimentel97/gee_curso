@@ -8,7 +8,7 @@ from ee import oauth
 def get_auth():
     try:
         # Acessa as credenciais a partir dos segredos configurados no Streamlit
-        service_account_keys = st.secrets["[google]service_account_json"]
+        service_account_keys = st.secrets["service_account_json"]
         credentials = service_account.Credentials.from_service_account_info(service_account_keys, scopes=oauth.SCOPES)
         
         # Inicializa o Google Earth Engine com as credenciais
