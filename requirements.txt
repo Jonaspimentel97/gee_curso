@@ -2,3 +2,5 @@ streamlit
 earthengine-api
 geemap
 setuptools
+google-auth
+google-auth-oauthlib
