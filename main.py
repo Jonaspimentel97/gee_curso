@@ -17,12 +17,15 @@ def get_auth():
         # Retorna sucesso após autenticação
         return 'GEE initialized successfully'
     except Exception as e:
+        # Exibe o erro se algo falhar
+        st.error(f"Erro ao autenticar: {e}")
+        return None
 
 # Inicialize o GEE antes de qualquer outra operação
 auth_status = get_auth()
 st.write(auth_status)
 
-if "successfully" in auth_status:  # Continua com o processamento somente se o GEE for inicializado com sucesso
+if auth_status and "successfully" in auth_status:  # Continua com o processamento somente se o GEE for inicializado com sucesso
     # Configuração do Streamlit
     st.title('Classificação de Uso e Cobertura do Solo com Landsat 8')
     st.sidebar.header('Parâmetros de Entrada')
@@ -35,7 +38,7 @@ if "successfully" in auth_status:  # Continua com o processamento somente se o G
         return image.updateMask(mask)
 
     # Definir a área de interesse
-    area = ee.Geometry.Polygon([[
+    area = ee.Geometry.Polygon([[ 
         [-43.003569900550836, -22.631163343162356],
         [-43.003569900550836, -22.71289591702512],
         [-42.814055740394586, -22.71289591702512],
@@ -110,3 +113,4 @@ if "successfully" in auth_status:  # Continua com o processamento somente se o G
     Map.to_streamlit(height=600)
 else:
     st.error("Erro na inicialização do GEE. Verifique as credenciais.")
+
