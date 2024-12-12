@@ -1,6 +1,12 @@
 import ee
 import streamlit as st
 import geemap.foliumap as geemap
+from google.auth import credentials
+from google.auth.transport.requests import Request
+import os
+
+# Defina o caminho para o arquivo de chave JSON da conta de serviço
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'path/to/your-service-account-key.json'
 
 # Inicialize a biblioteca Earth Engine
 ee.Initialize()
@@ -90,3 +96,4 @@ Map = geemap.Map(center=[-22.67, -42.91], zoom=10)
 Map.addLayer(classificacao, {'min': 0, 'max': 3, 'palette': ['red', 'green', 'blue', 'yellow']}, "Classificação")
 Map.addLayer(area, {}, "Área de Interesse")
 Map.to_streamlit(height=600)
+
