@@ -5,8 +5,6 @@ from google.auth import credentials
 from google.auth.transport.requests import Request
 import os
 
-# Defina o caminho para o arquivo de chave JSON da conta de serviço
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'path/to/your-service-account-key.json'
 
 # Inicialize a biblioteca Earth Engine
 ee.Initialize()
