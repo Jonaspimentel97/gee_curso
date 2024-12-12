@@ -99,5 +99,16 @@ if "successfully" in auth_status:  # Continua com o processamento somente se o G
     ).train(
         features=uso_classes,
         classProperty='uso',
-        inputPro
+        inputProperties=composite_bands
+    )
 
+    # Classificação
+    classificacao = composite2.select(composite_bands).classify(classificador)
+
+    # Configurar o mapa com geemap
+    Map = geemap.Map(center=[-22.67, -42.91], zoom=10)
+    Map.addLayer(classificacao, {'min': 0, 'max': 3, 'palette': ['red', 'green', 'blue', 'yellow']}, "Classificação")
+    Map.addLayer(area, {}, "Área de Interesse")
+    Map.to_streamlit(height=600)
+else:
+    st.error("Erro na inicialização do GEE. Verifique as credenciais.")
