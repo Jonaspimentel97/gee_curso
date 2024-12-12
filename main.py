@@ -6,7 +6,7 @@ from google.auth.transport.requests import Request
 import os
 
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "gee1-444402-108079866ffc.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "D:\Download\gee1-444402-108079866ffc.json"
 ee.Initialize()
 
 # Configuração do Streamlit
