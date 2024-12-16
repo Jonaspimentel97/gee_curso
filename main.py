@@ -26,7 +26,10 @@ auth_status = get_auth()
 st.write(auth_status)
 
 if auth_status and "successfully" in auth_status:  # Continua com o processamento somente se o GEE for inicializado com sucesso
-   # Configuração do Streamlit
+# Inicialize a biblioteca Earth Engine
+ee.Initialize()
+
+# Configuração do Streamlit
 st.title('Classificação de Uso e Cobertura do Solo')
 
 # Função para mascarar nuvens usando a banda QA_PIXEL do Landsat 8
@@ -121,4 +124,3 @@ with col1:
     </div>
     """
     st.markdown(legend_html, unsafe_allow_html=True)
-
