@@ -15,7 +15,7 @@ def get_auth():
         ee.Initialize(credentials)
         
           # Retorna sucesso após autenticação
-        return 'GEE initialized successfully'
+        return ' '
     except Exception as e:
         # Exibe o erro se algo falhar
         st.error(f"Erro ao autenticar: {e}")
